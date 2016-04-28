@@ -9,3 +9,5 @@ The client API just implements two methods:
 EuropeanVat.isVatValid(vatNumber, countrCode)
 EuropeanVat.isVatValid(vatNumberWithCountryCode)
 ```
+
+The exception `EuropeanVatApiException` is thrown whenever the connection with the VIES API is lost or when the API returns invalid values in the requested parameters. Invalid value in this case can be due to an unexpected country code.
