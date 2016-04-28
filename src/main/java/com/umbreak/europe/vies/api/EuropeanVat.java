@@ -16,10 +16,10 @@ public class EuropeanVat {
      * @return true if correct, false otherwise
      * @throws EuropeanVatApiException if the VIES API throws an exception. Might be related with country code invalid or with a connection issue.
      */
-    public boolean checkVat(String vatNumberWithCountryCode) throws EuropeanVatApiException {
+    public static boolean isVatValid(String vatNumberWithCountryCode) throws EuropeanVatApiException {
         String countryCode=vatNumberWithCountryCode.substring(0,2);
         String vatNumber=vatNumberWithCountryCode.substring(2);
-        return checkVat(vatNumber, countryCode);
+        return isVatValid(vatNumber, countryCode);
     }
 
     /**
@@ -29,7 +29,7 @@ public class EuropeanVat {
      * @return true if correct, false otherwise
      * @throws EuropeanVatApiException if the VIES API throws an exception. Might be related with country code invalid or with a connection issue.
      */
-    public boolean checkVat(String vatNumber, String countryCode) throws EuropeanVatApiException {
+    public static boolean isVatValid(String vatNumber, String countryCode) throws EuropeanVatApiException {
         Holder<Boolean> responseValidityCallback=generateHolder(false);
         try {
             EuropeanVatService.getAPI().checkVat(
@@ -47,7 +47,7 @@ public class EuropeanVat {
 
     //----------------------------- private methods ------------------------//
 
-    private <T> Holder<T> generateHolder(T value){
+    private static <T> Holder<T> generateHolder(T value){
         return new Holder<>(value);
     }
 
